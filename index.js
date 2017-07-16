@@ -1,7 +1,7 @@
 const http = require('http');
 const port = process.env.PORT || 8080;
-const startDelay = process.env.START_DELAY || 0;
-const crashDelay = process.env.CRASH_DELAY || 0;
+const startDelay = process.env.START_DELAY ? parseInt(process.env.START_DELAY, 10) : 0;
+const crashDelay = process.env.CRASH_DELAY ? parseInt(process.env.CRASH_DELAY, 10) : 0;
 
 const server = http.createServer((req, res) => {
   res.end('ok');
