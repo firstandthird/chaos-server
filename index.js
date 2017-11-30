@@ -3,9 +3,13 @@ const port = process.env.PORT || 8080;
 const startDelay = process.env.START_DELAY ? parseInt(process.env.START_DELAY, 10) : 0;
 const crashDelay = process.env.CRASH_DELAY ? parseInt(process.env.CRASH_DELAY, 10) : 0;
 const responseDelay = process.env.RESPONSE_DELAY ? parseInt(process.env.RESPONSE_DELAY, 10) : 0;
+const requestLogging = (process.env.REQUEST_LOG === 'true')
 
 const server = http.createServer((req, res) => {
   setTimeout(() => {
+    if (requestLogging) {
+      console.log('incoming request');
+    }
     res.end('ok');
   }, responseDelay * 1000);
 });
